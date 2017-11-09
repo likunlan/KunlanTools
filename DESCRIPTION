@@ -2,9 +2,9 @@ Package: KunlanTools
 Type: Package
 Title: a checkheight Function
 Version: 0.1.0
-Author:Kunlan Li 
+Author: Kunlan Li 
 Maintainer: KunlanLi <li.kunlan@campus.lmu.de>
-Description: Kunlan's personalized checkheight function calculate the difference from the sex-specific or the overall mean height
+Description: a function calculate the difference from the sex-specific or the overall mean height.
 Imports: dplyr
 License: everyone
 Encoding: UTF-8

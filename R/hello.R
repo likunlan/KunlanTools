@@ -21,13 +21,13 @@ checkHeight = function(students.input, sex.specific = TRUE) {
      result.frame = data.frame(matrix(NA, nrow = nrow(students.input), ncol = 2))
      colnames(result.frame) = c("name", "difference")
   #calculate the mean height of man
-  male.mean = mymean(students.input[students.input['sex']=='M',][['height']])
+  male.mean = mymean(students.input[students.input['sex']=='M',]['height']])
     #students.input %>%
     #filter(sex == "M") %>%
     #summarise(mean = mymean(height))
    #select(height)%>%mymean
   #calculate the mean height of female
-  female.mean = mymean(students.input[students.input['sex']=='F',][['height']])
+  female.mean = mymean(students.input[students.input['sex']=='F',]['height']])
     #students.input %>%
     #filter(sex == "F") %>%
     #summarise(mean = mymean(height))
@@ -58,7 +58,7 @@ checkHeight = function(students.input, sex.specific = TRUE) {
       )
   }
   result.frame[, "name"]=students.input[,"name"]
-  result.frame[, "difference"]=l
+  result.frame[, "difference"]=round(l/100,3)
   return(result.frame)
 }
 
@@ -72,8 +72,8 @@ checkHeight = function(students.input, sex.specific = TRUE) {
 #students = data.frame(cbind(age, weight, height, sex))
 #students = transform(students, age = as.numeric(as.character(age)))
 #students = transform(students, height = as.numeric(as.character(height)))
-#students = transform(students, weight = as.numeric(as.character(weight)))S
-
+#students = transform(students, weight = as.numeric(as.character(weight)))
 #students$name = c("Maria", "Franz", "Peter", "Lisa", "Hans", "Eva", "Mia", "Karl")
-#checkHeight(students,TRUE)
+
+checkHeight(students,TRUE)
 

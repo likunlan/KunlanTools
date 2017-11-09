@@ -18,44 +18,44 @@
 #' @example checkHeight(students,TRUE)
 checkHeight = function(students.input, sex.specific = TRUE) {
   #define result.frame
-     result.frame = data.frame(matrix(NA, nrow = nrow(students.input), ncol = 2))
-     colnames(result.frame) = c("name", "difference")
+  result.frame = data.frame(matrix(NA, nrow = nrow(students.input), ncol = 2))
+  colnames(result.frame) = c("name", "difference")
   #calculate the mean height of man
-  male.mean = mymean(students.input[students.input['sex']=='M',]['height']])
-    #students.input %>%
-    #filter(sex == "M") %>%
-    #summarise(mean = mymean(height))
-   #select(height)%>%mymean
+  male.mean = mymean(students.input[students.input['sex']=='M',][['height']])
+  #students.input %>%
+  #filter(sex == "M") %>%
+  #summarise(mean = mymean(height))
+  #select(height)%>%mymean
   #calculate the mean height of female
-  female.mean = mymean(students.input[students.input['sex']=='F',]['height']])
-    #students.input %>%
-    #filter(sex == "F") %>%
-    #summarise(mean = mymean(height))
+  female.mean = mymean(students.input[students.input['sex']=='F',][['height']])
+  #students.input %>%
+  #filter(sex == "F") %>%
+  #summarise(mean = mymean(height))
   #select(height)%>%mymean
   #calculate the  overall mean height
   overall.mean = mymean(students.input[,"height"])
-    #students.input%>%
-    #summarise(mean = mymean(height))
+  #students.input%>%
+  #summarise(mean = mymean(height))
   #select(height)%>%mymean
   #if calculate the difference from the sex-specific
   if(sex.specific==TRUE){
-  # use apply  to calculate the difference
-  l = apply(students.input,1,function(r){
-    if (r['sex'] == "F") {
-      height.diff = 100*(as.numeric(r['height']) - female.mean)
+    # use apply  to calculate the difference
+    l = apply(students.input,1,function(r){
+      if (r['sex'] == "F") {
+        height.diff = 100*(as.numeric(r['height']) - female.mean)
+      }
+      else {
+        height.diff = 100*(as.numeric(r['height']) - male.mean)
+      }
     }
-    else {
-      height.diff = 100*(as.numeric(r['height']) - male.mean)
-    }
-  }
-  )
+    )
   }
   #if calculate the difference from the overall mean height
   else{
     l = apply(students.input, 1, function(r){
       height.diff = 100*(as.numeric(r['height']) - overall.mean)
     }
-      )
+    )
   }
   result.frame[, "name"]=students.input[,"name"]
   result.frame[, "difference"]=round(l/100,3)
@@ -73,7 +73,7 @@ checkHeight = function(students.input, sex.specific = TRUE) {
 #students = transform(students, age = as.numeric(as.character(age)))
 #students = transform(students, height = as.numeric(as.character(height)))
 #students = transform(students, weight = as.numeric(as.character(weight)))
-#students$name = c("Maria", "Franz", "Peter", "Lisa", "Hans", "Eva", "Mia", "Karl")
 
-checkHeight(students,TRUE)
+#students$name = c("Maria", "Franz", "Peter", "Lisa", "Hans", "Eva", "Mia", "Karl")
+#checkHeight(students,TRUE)
 

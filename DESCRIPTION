@@ -5,7 +5,7 @@ Version: 0.1.0
 Author: Kunlan Li 
 Maintainer: KunlanLi <li.kunlan@campus.lmu.de>
 Description: a function calculate the difference from the sex-specific or the overall mean height.
-Imports: dplyr
+Imports: dplyr, checkmate
 License: everyone
 Encoding: UTF-8
 LazyData: true

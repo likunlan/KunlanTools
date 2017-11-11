@@ -10,13 +10,26 @@
 #' @title checkHeight
 #' @description Script for simple function that checks the difference in height     from the sex-specific mean or the overall mean height for each of the students
 #' @importFrom stats filter
-#' @export
 #' @param students.input a input dataframe
 #' @param  sex.specific logical value
+#' @param print.statement logical value
 #' @param r a vector
 #' @return result of the computation
 #' @example checkHeight(students,TRUE)
-checkHeight = function(students.input, sex.specific = TRUE) {
+#'  @export
+#'  @import dplyr
+#'  @import checkmate
+checkHeight = function(students.input, sex.specific = TRUE, print.statement = FALSE){
+  #Check if the variable that controls the sex specificity of the mean calculation is boolean
+  checkmate::assertLogical(x = sex.specific)
+  #Check if the variable that controls the print statement is boolean
+  checkmate::assertLogical(x = print.statement)
+  #Check if students.input is a data frame with a minimum of 4 rows and exactly 5 columns with the types c("numeric", "numeric", "numeric", "factor", "character") without any missing values
+  checkmate::assertDataFrame(x = students.input, types = c("numeric", "numeric", "numeric", "factor", "character"), any.missing = FALSE, min.rows = 4, min.cols = 5)
+  # Check if the 3rd column aka the height-column of the students data frame contains numerics from the interval [1.30, 2.40]
+  checkmate::assertNumeric(x =students.input[,'height'] , lower = 1.30, upper = 2.40)
+  #Check if the 4th aka the sex-column contains a factor variable with maximum two levels M and F
+  checkmate::assertFactor(x=students.input[,"sex"], max.levels=2,levels=c("M", "F"))
   #define result.frame
   result.frame = data.frame(matrix(NA, nrow = nrow(students.input), ncol = 2))
   colnames(result.frame) = c("name", "difference")
@@ -57,23 +70,18 @@ checkHeight = function(students.input, sex.specific = TRUE) {
     }
     )
   }
-  result.frame[, "name"]=students.input[,"name"]
+  result.frame[, "name"]=students.input[,"names"]
   result.frame[, "difference"]=round(l/100,3)
+  #if print.statement = TRUE
+  if(print.statement == TRUE){
+    print("Yippie, I calculated the mean differences!")
+  }
+
   return(result.frame)
 }
 
-#library(dplyr)
 
-#age = c(19, 22, 21, 23, 22, 20, 28, 25)
-#weight = c(50, 75, 80, 56, 75, 58, 65, 82)
-#height = c(1.66, 1.78, 1.90, 1.72, 1.83, 1.68, 1.70, 1.85)
-#sex = c("F", "M", "M", "F", "M", "F", "F", "M")
-
-#students = data.frame(cbind(age, weight, height, sex))
-#students = transform(students, age = as.numeric(as.character(age)))
-#students = transform(students, height = as.numeric(as.character(height)))
-#students = transform(students, weight = as.numeric(as.character(weight)))
-
-#students$name = c("Maria", "Franz", "Peter", "Lisa", "Hans", "Eva", "Mia", "Karl")
-#checkHeight(students,TRUE)
-
+#Frage 3-12
+#students=read.csv(file="C:\\Users\\likunlan\\Desktop\\praktikum\\ex1\\students.csv")
+#save(students,file='data/students.rda')
+#devtools::use_data(students,overwrite = TRUE)

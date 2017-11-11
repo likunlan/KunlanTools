@@ -4,12 +4,14 @@
 \alias{checkHeight}
 \title{checkHeight}
 \usage{
-checkHeight(students.input, sex.specific = TRUE)
+checkHeight(students.input, sex.specific = TRUE, print.statement = FALSE)
 }
 \arguments{
 \item{students.input}{a input dataframe}
 
 \item{sex.specific}{logical value}
+
+\item{print.statement}{logical value}
 
 \item{r}{a vector}
 }

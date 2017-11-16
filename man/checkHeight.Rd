@@ -19,7 +19,7 @@ checkHeight(students.input, sex.specific = TRUE, print.statement = FALSE)
 result of the computation
 }
 \description{
-Script for simple function that checks the difference in height     from the sex-specific mean or the overall mean height for each of the students
+Script for simple function that checks the difference in height from the sex-specific mean or the overall mean height for each of the students
 }
 \details{
 an example function named 'checkheight'

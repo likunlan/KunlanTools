@@ -8,7 +8,7 @@
 #' Date: 02.11.2017
 #' @author Kunlan Li <li.kunlan@campus.lmu.de>
 #' @title checkHeight
-#' @description Script for simple function that checks the difference in height     from the sex-specific mean or the overall mean height for each of the students
+#' @description Script for simple function that checks the difference in height from the sex-specific mean or the overall mean height for each of the students
 #' @importFrom stats filter
 #' @param students.input a input dataframe
 #' @param  sex.specific logical value
@@ -16,9 +16,9 @@
 #' @param r a vector
 #' @return result of the computation
 #' @example checkHeight(students,TRUE)
-#'  @export
-#'  @import dplyr
-#'  @import checkmate
+#' @export
+#' @import dplyr
+#' @import checkmate
 checkHeight = function(students.input, sex.specific = TRUE, print.statement = FALSE){
   #Check if the variable that controls the sex specificity of the mean calculation is boolean
   checkmate::assertLogical(x = sex.specific)

@@ -1,2 +1,1 @@
 language: R
-testthat::test_dir("./tests/testthat")

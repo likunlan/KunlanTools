@@ -3,4 +3,4 @@
 export(checkHeight)
 import(checkmate)
 import(dplyr)
-importFrom(stats,filter)
+importFrom("stats::filter",)

@@ -9,7 +9,7 @@
 #' @author Kunlan Li <li.kunlan@campus.lmu.de>
 #' @title checkHeight
 #' @description Script for simple function that checks the difference in height from the sex-specific mean or the overall mean height for each of the students
-#' @importFrom stats filter
+#' @importFrom stats::filter
 #' @param students.input a input dataframe
 #' @param  sex.specific logical value
 #' @param print.statement logical value
@@ -21,15 +21,15 @@
 #' @import checkmate
 checkHeight = function(students.input, sex.specific = TRUE, print.statement = FALSE){
   #Check if the variable that controls the sex specificity of the mean calculation is boolean
-  checkmate::assertLogical(x = sex.specific)
+  assertLogical(sex.specific)
   #Check if the variable that controls the print statement is boolean
-  checkmate::assertLogical(x = print.statement)
+  assertLogical(print.statement)
   #Check if students.input is a data frame with a minimum of 4 rows and exactly 5 columns with the types c("numeric", "numeric", "numeric", "factor", "character") without any missing values
-  checkmate::assertDataFrame(x = students.input, types = c("numeric", "numeric", "numeric", "factor", "character"), any.missing = FALSE, min.rows = 4, min.cols = 5)
+  assertDataFrame(students.input, types = c("numeric", "numeric", "numeric", "factor", "character"), any.missing = FALSE, min.rows = 4, min.cols = 5)
   # Check if the 3rd column aka the height-column of the students data frame contains numerics from the interval [1.30, 2.40]
-  checkmate::assertNumeric(x =students.input[,'height'] , lower = 1.30, upper = 2.40)
+  assertNumeric(students.input[,3] , lower = 1.30, upper = 2.40)
   #Check if the 4th aka the sex-column contains a factor variable with maximum two levels M and F
-  checkmate::assertFactor(x=students.input[,"sex"], max.levels=2,levels=c("M", "F"))
+  assertFactor(students.input[,4], max.levels=2,levels=c("M", "F"))
   #define result.frame
   result.frame = data.frame(matrix(NA, nrow = nrow(students.input), ncol = 2))
   colnames(result.frame) = c("name", "difference")
